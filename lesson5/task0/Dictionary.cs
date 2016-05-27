@@ -8,25 +8,34 @@ namespace task0
 {
     class Dictionary
     {
-        private string[] key = new string[5];
-        private string[] value = new string[5];
+        private string[] ru = new string[5];
+        private string[] en = new string[5];
+        private string[] ua = new string[5];
 
         public Dictionary()
         {
-            key[0] = "книга"; value[0] = "book";
-            key[1] = "ручка"; value[1] = "pen";
-            key[2] = "солнце"; value[2] = "sun";
-            key[3] = "яблоко"; value[3] = "apple";
-            key[4] = "стол"; value[4] = "table";
+            ru[0] = "книга";        en[0] = "book";     ua[0] = "книга";
+            ru[1] = "ручка";        en[1] = "pen";      ua[1] = "ручка";
+            ru[2] = "солнце";       en[2] = "sun";      ua[2] = "сонце";
+            ru[3] = "яблоко";       en[3] = "apple";    ua[3] = "яблуко";
+            ru[4] = "стол";         en[4] = "table";    ua[4] = "стіл";
         }
 
         public string this[string index]
         {
             get
             {
-                for (int i = 0; i < key.Length; i++)
-                    if (key[i] == index)
-                        return key[i] + " - " + value[i];
+                for (int i = 0; i < ru.Length; i++)
+                {
+                    if (ru[i] == index)
+                        return ru[i] + " - " + en[i] + " - " + ua[i];
+
+                    if (en[i] == index)
+                        return ru[i] + " - " + en[i] + " - " + ua[i];
+
+                    if (ua[i] == index)
+                        return ru[i] + " - " + en[i] + " - " + ua[i];
+                }
 
                 return string.Format("{0} - нет перевода для этого слова.", index);
             }
@@ -36,8 +45,8 @@ namespace task0
         {
             get
             {
-                if (index >= 0 && index < key.Length)
-                    return key[index] + " - " + value[index];
+                if (index >= 0 && index < ru.Length)
+                    return ru[index] + " - " + en[index] + " - " + ua[index];
                 else
                     return "Попытка обращения за пределы массива.";
             }
