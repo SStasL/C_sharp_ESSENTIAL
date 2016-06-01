@@ -9,23 +9,45 @@ namespace task2
     class Program
     {
         
-            static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Random oRandom = new Random();
-            MyMatrix oMyMatrix = new MyMatrix(10, 10);
+      MyMatrix m = new MyMatrix(10, 10);
 
-            for (int i = 0; i < oMyMatrix.LenghtY; i++)
-            {
-                for (int j = 0; j < oMyMatrix.LenghtX; j++)
-                {
-                    oMyMatrix[i, j] = oRandom.Next(0, 10);
-                }
-            }
+      Console.WriteLine("Массив MyMatrix.m: ");
+      m.Show();
 
-            oMyMatrix.Show();
+      m.Resize(5, 5);
+      Console.WriteLine();
+      Console.WriteLine("Новый массив MyMatrix.m: ");
+      m.Show();
 
-            Console.ReadKey();
-            
-        }
+      float[,] mm = new float[5, 5];
+      Random r = new Random();
+      for (int i = 0; i < mm.GetLength(0); i++)
+        for (int j = 0; j < mm.GetLength(1); j++)
+          mm[i, j] = r.Next(0, 101);
+
+      Console.WriteLine();
+      Console.WriteLine("Массив mm: ");
+      for (int i = 0; i < mm.GetLength(0); i++)
+      {
+        for (int j = 0; j < mm.GetLength(1); j++)
+          Console.Write("{0} ", mm[i, j]);
+        Console.WriteLine();
+      }
+
+      Console.WriteLine();
+      Console.WriteLine("Новый массив mm, полученный статическим методом класса MyMatrix: ");
+      MyMatrix.Resize(3, 2, ref mm);
+      for (int i = 0; i < mm.GetLength(0); i++)
+      {
+        for (int j = 0; j < mm.GetLength(1); j++)
+          Console.Write("{0} ", mm[i, j]);
+        Console.WriteLine();
+      }
+
+      Console.ReadKey();
+
+    }
     }
 }
